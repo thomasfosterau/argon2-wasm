@@ -1,0 +1,24 @@
+[package]
+name = "argon2-wasm"
+version = "0.1.0"
+authors = ["Thomas Foster <me@thomasfoster.co>"]
+edition = "2018"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[features]
+default = []
+
+[dependencies]
+wasm-bindgen = "0.2.84"
+argon2 = { version = "0.5.3", features = ["password-hash", "rand"] }
+rand_core = { version = "0.6.4", features = ["getrandom"] }
+getrandom = { version = "0.2.15", features = ["js"] }
+
+[dev-dependencies]
+wasm-bindgen-test = "0.3.34"
+
+[profile.release]
+# Tell `rustc` to optimize for small code size.
+opt-level = "s"
